@@ -1,2 +1,2 @@
-# ComfyUI-Captain-Extensionss
+# ComfyUI-Captain-Extensions
 ComfyUI extensions for better Captain integration
