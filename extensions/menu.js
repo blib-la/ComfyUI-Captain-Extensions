@@ -1,6 +1,34 @@
 /**
  * Coded with love by Blibla
- * LICENSE: AGPL 3.0
+ * LICENSE: AGPL-3.0
+ *
+ * This file defines a custom extension for the ComfyApp, named "Captain.menu".
+ * The extension modifies the default save button functionality in the ComfyUI
+ * to use custom versions that generate filenames dynamically and download
+ * workflow data as JSON files. Specifically, it replaces the standard save
+ * buttons with ones that do not use window.prompt, instead generating filenames
+ * based on the current timestamp.
+ *
+ * The primary purpose of this file is to enhance the usability of the save
+ * functionality by automatically generating filenames, avoiding the need for
+ * manual input via window.prompt, and streamlining the process of downloading
+ * workflow data in both regular and API formats.
+ *
+ * The reason for this modification is that we run ComfyUI in a webview of
+ * Electron.js, which does not allow window.prompt. Therefore, we replace them
+ * to make the buttons work in Captain, as part of the project available at
+ * https://github.com/blib-la/captain.
+ *
+ * Mechanism:
+ * - The `downloadFile` function takes a filename and data object, converts the
+ *   data to a JSON blob, creates a temporary anchor element, triggers a download
+ *   by clicking the anchor, and then cleans up the temporary elements.
+ * - The extension registers itself with the `originalApp` and sets up custom
+ *   buttons in the ComfyUI menu container.
+ * - The custom buttons, when clicked, generate filenames using the current timestamp,
+ *   obtain the workflow data via `app.graphToPrompt()`, and trigger the download
+ *   using the `downloadFile` function.
+ * - Existing save buttons are removed and replaced with these custom buttons.
  *
  * Homepage:  https://blib.la
  * GitHub: https://github.com/blib-la
